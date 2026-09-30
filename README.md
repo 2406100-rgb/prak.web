@@ -18,10 +18,10 @@
 
 - **Laptop:** Lenovo LOQ
 - **Sistem Operasi:** Windows 11
-- **Processor:** [Isi processor]
-- **RAM:** [Isi RAM]
-- **Node.js:** [Isi versi Node.js]
-- **NPM:** [Isi versi NPM]
-- **Git:** [Isi versi Git]
+- **Processor:** [intel core 5]
+- **RAM:** [16]
+- **Node.js:** [v26.3.0..js]
+- **NPM:** [11.16.0 NPM]
+- **Git:** [2.55.0..3 Git]
 - **Code Editor:** Visual Studio Code
 - **Web Server:** Laragon
