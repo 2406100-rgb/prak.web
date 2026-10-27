@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Tracker | Kaka Riscky Ardhiana</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fc;
+            color: #202943;
+        }
+
+        .sidebar {
+            position: fixed;
+            width: 235px;
+            height: 100vh;
+            padding: 30px 20px;
+            background: white;
+            border-right: 1px solid #e5eaf3;
+        }
+
+        .brand {
+            color: #4263eb;
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .sidebar-label {
+            color: #929bb0;
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 13px;
+            margin-bottom: 8px;
+            border-radius: 9px;
+            color: #63708a;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            color: #4263eb;
+            background: #edf1ff;
+        }
+
+        .profile-mini {
+            margin-top: 40px;
+            padding: 15px;
+            background: #f4f6ff;
+            border-radius: 12px;
+        }
+
+        .profile-mini strong {
+            font-size: 13px;
+        }
+
+        .profile-mini p {
+            margin-top: 6px;
+            color: #7d89a1;
+            font-size: 11px;
+        }
+
+        .main {
+            margin-left: 235px;
+            padding: 32px;
+        }
+
+        .hero {
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 18px;
+            color: white;
+            background: linear-gradient(120deg, #4263eb, #6c8cff);
+        }
+
+        .hero-label {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+            margin: 15px 0 10px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 12px;
+            border: 1px solid #ffffff70;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .section-heading {
+            margin: 28px 0 16px;
+        }
+
+        .section-heading h2 {
+            font-size: 20px;
+        }
+
+        .section-heading p {
+            color: #8290a8;
+            font-size: 13px;
+            margin-top: 7px;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .stat-card,
+        .panel {
+            padding: 23px;
+            background: white;
+            border: 1px solid #e7ebf4;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px #263b7008;
+        }
+
+        .stat-card h3 {
+            color: #8290a8;
+            font-size: 13px;
+            font-weight: normal;
+        }
+
+        .stat-card p {
+            margin-top: 14px;
+            color: #4263eb;
+            font-size: 24px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .panel h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #8792a8;
+            font-size: 12px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 17px;
+        }
+
+        label {
+            color: #53617a;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dfe5f0;
+            border-radius: 9px;
+            background: #fbfcff;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4263eb;
+            box-shadow: 0 0 0 3px #4263eb15;
+        }
+
+        textarea {
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin: 5px 0 20px;
+        }
+
+        .checkbox-group input {
+            width: 16px;
+            height: 16px;
+            accent-color: #4263eb;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 11px 14px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.86;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 13px;
+            background: #4263eb;
+            color: white;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #edf1ff;
+            color: #4263eb;
+            font-size: 17px;
+        }
+
+        .feature-item strong {
+            font-size: 13px;
+        }
+
+        .feature-item p {
+            color: #8290a8;
+            font-size: 12px;
+            line-height: 1.7;
+            margin-top: 5px;
+        }
+
+        .projects-panel {
+            margin-top: 22px;
+        }
+
+        .toolbar {
+            margin: 20px 0;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn-filter {
+            background: #f0f3fa;
+            color: #68758d;
+        }
+
+        .btn-filter.active {
+            background: #4263eb;
+            color: white;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: 0;
+            padding: 18px;
+            background: white;
+            border: 1px solid #e7ebf4;
+            border-radius: 13px;
+            transition: 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: #b8c7ff;
+            box-shadow: 0 7px 18px #263b700d;
+            transform: translateY(-2px);
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 6px 9px;
+            border-radius: 6px;
+            background: #edf1ff;
+            color: #4263eb;
+            font-size: 10px;
+        }
+
+        .project-card h3 {
+            font-size: 15px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+            margin: 12px 0 8px;
+        }
+
+        .project-description {
+            color: #68758d;
+            font-size: 12px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .tech-label {
+            margin-top: 12px;
+            color: #4263eb;
+            font-size: 11px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .project-budget {
+            margin-top: 12px;
+            color: #35415b;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 9px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .badge-success {
+            background: #e3f8ee;
+            color: #15805d;
+        }
+
+        .badge-pending {
+            background: #fff2dc;
+            color: #b7791f;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #edf0f6;
+        }
+
+        .project-actions button {
+            flex: 1;
+            min-width: 0;
+            padding: 9px 7px;
+        }
+
+        .btn-status {
+            color: #4263eb;
+            background: #edf1ff;
+        }
+
+        .btn-delete {
+            color: #d9485b;
+            background: #fff0f1;
+        }
+
+        .empty-message {
+            grid-column: 1 / -1;
+            padding: 30px 15px;
+            text-align: center;
+            color: #8290a8;
+            background: #fafbff;
+            border: 1px dashed #d8deeb;
+            border-radius: 10px;
+            font-size: 13px;
+        }
+
+        footer {
+            padding: 28px 0 5px;
+            text-align: center;
+            color: #929bb0;
+            font-size: 12px;
+        }
+
+        @media (max-width: 1150px) {
+            .sidebar {
+                width: 205px;
+            }
+
+            .main {
+                margin-left: 205px;
+                padding: 22px;
+            }
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .project-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 18px;
+            }
+
+            .brand {
+                margin-bottom: 18px;
+            }
+
+            .sidebar-label,
+            .profile-mini {
+                display: none;
+            }
+
+            .sidebar nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .sidebar a {
+                margin: 0;
+                padding: 9px;
+                font-size: 12px;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .hero {
+                padding: 23px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                line-height: 1.4;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 18px;
+            }
+
+            .stat-card p {
+                margin-top: 8px;
+            }
+
+            .project-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="brand">Kaka<span style="color:#202943;">Track.</span></div>
+
+        <p class="sidebar-label">MENU UTAMA</p>
+
+        <nav>
+            <a href="#dashboard" class="active">▦ Dashboard</a>
+            <a href="#tambah-proyek">＋ Tambah Proyek</a>
+            <a href="#daftar-proyek">▤ Proyek Saya</a>
+        </nav>
+
+        <div class="profile-mini">
+            <strong>Kaka Riscky Ardhiana</strong>
+            <p>Mahasiswa Teknik Informatika</p>
+            <p>Institut Teknologi Garut</p>
+        </div>
+    </aside>
+
+    <main class="main" id="dashboard">
+        <section class="hero">
+            <p class="hero-label">PERSONAL PROJECT DASHBOARD</p>
+            <h1>Halo, saya Kaka Riscky Ardhiana 👋</h1>
+            <p>
+                Mahasiswa Teknik Informatika yang sedang mengembangkan
+                kemampuan di bidang pemrograman dan teknologi informasi.
+                Di sini saya mengelola proyek, mencatat teknologi yang
+                digunakan, serta memantau perkembangan setiap pekerjaan.
+            </p>
+            <span class="hero-tag">Teknik Informatika · INF C · 2026</span>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <h3>Total Proyek</h3>
+                <p id="stat-total-projects">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Anggaran</h3>
+                <p id="stat-total-budget">Rp0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Proyek Selesai</h3>
+                <p id="stat-completed-projects">0</p>
+            </div>
+        </section>
+
+        <div class="section-heading">
+            <h2>Ruang Kerja Proyek</h2>
+            <p>Tambahkan proyek baru dan catat perkembangannya di sini.</p>
+        </div>
+
+        <div class="workspace">
+            <section class="panel" id="tambah-proyek">
+                <h2>Tambah Proyek Baru</h2>
+                <p class="description">
+                    Lengkapi informasi proyek agar dokumentasi portofoliomu lebih rapi.
+                </p>
+
+                <form id="project-form">
+                    <div class="form-group">
+                        <label for="project-title">Nama Proyek</label>
+                        <input
+                            type="text"
+                            id="project-title"
+                            placeholder="Contoh: Website Portofolio"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-category">Kategori Proyek</label>
+                        <select id="project-category" required>
+                            <option value="Web App">Web App</option>
+                            <option value="Mobile App">Mobile App</option>
+                            <option value="Desktop App">Desktop App</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-description">Deskripsi Proyek</label>
+                        <textarea
+                            id="project-description"
+                            rows="3"
+                            placeholder="Jelaskan fungsi dan tujuan proyek..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-technologies">Teknologi yang Digunakan</label>
+                        <input
+                            type="text"
+                            id="project-technologies"
+                            placeholder="Contoh: HTML, CSS, JavaScript"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-budget">Anggaran (Rupiah)</label>
+                        <input
+                            type="number"
+                            id="project-budget"
+                            placeholder="Contoh: 2500000"
+                            min="1"
+                            step="1"
+                            required
+                        >
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="project-completed">
+                        <label for="project-completed">Proyek sudah selesai</label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        + Tambahkan dan Simpan Proyek
+                    </button>
+                </form>
+            </section>
+
+            <section class="panel">
+                <h2>Informasi Dashboard</h2>
+                <p class="description">
+                    Fitur untuk membantu kamu mengatur dokumentasi proyek.
+                </p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">＋</div>
+                        <div>
+                            <strong>Dokumentasi Proyek</strong>
+                            <p>
+                                Simpan nama, deskripsi, kategori, dan teknologi
+                                yang digunakan pada setiap proyek.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>Pemantauan Progres</strong>
+                            <p>
+                                Ubah status proyek dari dalam pengerjaan
+                                menjadi selesai kapan saja.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">▤</div>
+                        <div>
+                            <strong>Penyimpanan Otomatis</strong>
+                            <p>
+                                Data disimpan di browser sehingga proyek tetap
+                                tersedia setelah halaman di-refresh.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">⌕</div>
+                        <div>
+                            <strong>Pencarian dan Filter</strong>
+                            <p>
+                                Temukan proyek berdasarkan nama, deskripsi,
+                                teknologi, atau kategori.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="panel projects-panel" id="daftar-proyek">
+            <h2>Proyek Saya</h2>
+            <p class="description">
+                Kumpulan proyek yang sedang kamu kembangkan dan dokumentasikan.
+            </p>
+
+            <div class="toolbar">
+                <input
+                    type="search"
+                    id="search-project"
+                    placeholder="Cari nama, deskripsi, atau teknologi..."
+                >
+            </div>
+
+            <div class="filter-buttons">
+                <button type="button" class="btn-filter active" data-category="Semua">
+                    Semua Proyek
+                </button>
+                <button type="button" class="btn-filter" data-category="Web App">
+                    Web App
+                </button>
+                <button type="button" class="btn-filter" data-category="Mobile App">
+                    Mobile App
+                </button>
+                <button type="button" class="btn-filter" data-category="Desktop App">
+                    Desktop App
+                </button>
+                <button type="button" class="btn-filter" data-category="UI/UX Design">
+                    UI/UX Design
+                </button>
+            </div>
+
+            <div id="project-list" class="project-list"></div>
+        </section>
+
+        <footer>
+            © 2026 Kaka Riscky Ardhiana · Personal Project Dashboard
+        </footer>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
